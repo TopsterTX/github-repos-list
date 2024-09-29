@@ -1,1 +1,0 @@
-export const REPOSITORIES_PER_PAGE = 10;

@@ -18,7 +18,7 @@ export const Repository = ({
     <article className="flex flex-col gap-3 p-5 border-2 rounded-xl">
       <section className="flex gap-4 items-center">
         <div className="h-6 w-6 border-mg rounded-md overflow-hidden">
-          <img src={owner.avatar_url} alt="avatar" />
+          <img src={owner.avatar_url || ''} alt="avatar" />
         </div>
         <a
           className="text-xl text-blue-600 overflow-hidden"

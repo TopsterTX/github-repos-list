@@ -1,50 +1,21 @@
-# React + TypeScript + Vite
+# Список GitHub репозиториев по TS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Приложение отображающее список проектов на языке TypeScript. С возможностью поиска по ключевым словам, и пагинацией.
 
-Currently, two official plugins are available:
+Используется общедоступное API GitHub.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Доступные переменные окружения:
 
-## Expanding the ESLint configuration
+- VITE_API_URL - Урл для запросов к API. По умолчанию: https://api.github.com.
+- VITE_GITHUB_TOKEN - API использует Rate Limiting. Рекомендуется указать свой персональный GitHub токен.
+- VITE_REPOSITORIES_PER_PAGE - Количество отображаемых репозиториев на странице. По умолчанию: 10
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Как получить персональные GitHub токен.
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+1) Перейти по ссылке: https://github.com/settings/tokens
+2) Справа сверху в выпдающем меню "Generate new token" выбрать пункт "Generate new token (classic)"
+3) Авторизоваться.
+4) Придумать и указать в поле Note название токена.
+5) ОБЯЗАТЕЛЬНО! Выбрать чекбокс "repo"
+6) Кликнуть "Generate Token"
+7) Скопировать, и вставить в .env файл :)

@@ -7,7 +7,7 @@ import {
   SuccessGetRepositoriesPayload,
 } from '@/store/repositories';
 import { getFromAPI } from '@/api';
-import { REPOSITORIES_PER_PAGE } from '@/constants';
+import { VITE_REPOSITORIES_PER_PAGE } from '@/config';
 import { setMaxPages } from '@/store/pagination';
 
 function* getRepositoriesSagaWorker({
@@ -21,7 +21,7 @@ function* getRepositoriesSagaWorker({
     );
     yield put(successGetRepositories(result));
     yield put(
-      setMaxPages(Math.ceil(result.total_count / REPOSITORIES_PER_PAGE)),
+      setMaxPages(Math.ceil(result.total_count / VITE_REPOSITORIES_PER_PAGE)),
     );
   } catch (error) {
     if (error instanceof FetchError) {

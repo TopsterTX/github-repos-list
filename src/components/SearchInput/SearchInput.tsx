@@ -1,9 +1,11 @@
 import { ChangeEventHandler, useState } from 'react';
+import { useDebouncedCallback } from 'use-debounce';
 import { SearchIcon } from '@/assets';
 import { setSearchValue } from '@/store/search';
-import { useDebouncedCallback } from 'use-debounce';
 import { useAppDispatch } from '@/hooks';
 import { setCurrentPage } from '@/store/pagination';
+
+const DELAY = 700;
 
 export const SearchInput = () => {
   const dispatch = useAppDispatch();
@@ -13,7 +15,7 @@ export const SearchInput = () => {
   const debounced = useDebouncedCallback((value) => {
     dispatch(setSearchValue(value));
     dispatch(setCurrentPage(1));
-  }, 700);
+  }, DELAY);
 
   const changeSearchHandler: ChangeEventHandler<HTMLInputElement> = (event) => {
     setValue(event.target.value);
