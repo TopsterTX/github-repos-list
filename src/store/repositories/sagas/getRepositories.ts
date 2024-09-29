@@ -8,7 +8,7 @@ import {
 } from '@/store/repositories';
 import { getFromAPI } from '@/api';
 import { VITE_REPOSITORIES_PER_PAGE } from '@/config';
-import { setMaxPages } from '@/store/pagination';
+import { setCurrentPage, setMaxPages } from '@/store/pagination';
 
 function* getRepositoriesSagaWorker({
   payload,
@@ -26,6 +26,8 @@ function* getRepositoriesSagaWorker({
   } catch (error) {
     if (error instanceof FetchError) {
       yield put(errorGetRepositories(error.data));
+      yield put(setMaxPages(1));
+      yield put(setCurrentPage(1));
     }
   }
 }

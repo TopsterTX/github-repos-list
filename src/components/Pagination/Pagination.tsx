@@ -6,7 +6,7 @@ import { moveToTop } from '@/utils';
 
 export const Pagination = () => {
   const dispatch = useAppDispatch();
-  const { isLoading } = useAppSelector(repositoriesSelector);
+  const { isLoading, error } = useAppSelector(repositoriesSelector);
   const { currentPage, maxPages } = useAppSelector(paginationSelector);
 
   const isNextStepDisabled = currentPage === maxPages;
@@ -26,7 +26,7 @@ export const Pagination = () => {
     <article className="flex gap-2 m-auto pb-4">
       <Button
         onClick={onChangePrevPage}
-        disabled={isPrevStepDisabled || isLoading}
+        disabled={Boolean(isPrevStepDisabled || isLoading || error)}
         className="border-gray-200"
       >
         {'<'}
@@ -36,7 +36,7 @@ export const Pagination = () => {
       </Button>
       <Button
         onClick={onChangeNextPage}
-        disabled={isNextStepDisabled || isLoading}
+        disabled={Boolean(isNextStepDisabled || isLoading || error)}
         className="border-gray-200"
       >
         {'>'}
