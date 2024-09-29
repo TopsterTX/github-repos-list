@@ -24,11 +24,9 @@ function* getRepositoriesSagaWorker({
       setMaxPages(Math.ceil(result.total_count / VITE_REPOSITORIES_PER_PAGE)),
     );
   } catch (error) {
-    if (error instanceof FetchError) {
-      yield put(errorGetRepositories(error.data));
-      yield put(setMaxPages(1));
-      yield put(setCurrentPage(1));
-    }
+    yield put(errorGetRepositories('Error in repositories request'));
+    yield put(setMaxPages(1));
+    yield put(setCurrentPage(1));
   }
 }
 
