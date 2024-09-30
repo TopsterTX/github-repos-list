@@ -1,31 +1,29 @@
-import { ChangeEventHandler, useState } from 'react';
+import { ChangeEventHandler } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 import { SearchIcon } from '@/assets';
 import {
   searchSelector,
+  setSearchDebounced,
   setSearchValue,
   toggleShowFilters,
 } from '@/store/search';
 import { useAppDispatch, useAppSelector } from '@/hooks';
 import { setCurrentPage } from '@/store/pagination';
 import { Button } from '@/components';
-
-const DELAY = 700;
+import { VITE_SEARCH_DELAY_MS } from '@/config';
 
 export const SearchInput = () => {
   const dispatch = useAppDispatch();
 
-  const [value, setValue] = useState('');
-
-  const { showFilters } = useAppSelector(searchSelector);
+  const { showFilters, value } = useAppSelector(searchSelector);
 
   const debounced = useDebouncedCallback((value) => {
-    dispatch(setSearchValue(value));
+    dispatch(setSearchDebounced(value));
     dispatch(setCurrentPage(1));
-  }, DELAY);
+  }, VITE_SEARCH_DELAY_MS);
 
   const changeSearchHandler: ChangeEventHandler<HTMLInputElement> = (event) => {
-    setValue(event.target.value);
+    dispatch(setSearchValue(event.target.value));
     debounced(event.target.value);
   };
 

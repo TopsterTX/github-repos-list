@@ -3,7 +3,8 @@ import type { InitialState } from './types';
 import { GetRepositoriesPayload } from '@/store/repositories';
 
 const initialState: InitialState = {
-  value: null,
+  debouncedValue: null,
+  value: '',
   sort: 'stars',
   order: 'desc',
   showFilters: false,
@@ -15,6 +16,9 @@ const searchSlice = createSlice({
   reducers: {
     setSearchValue: (state, { payload }: PayloadAction<string>) => {
       state.value = payload;
+    },
+    setSearchDebounced: (state, { payload }: PayloadAction<string>) => {
+      state.debouncedValue = payload;
     },
     setSort: (
       state,
@@ -34,6 +38,11 @@ const searchSlice = createSlice({
   },
 });
 
-export const { setSearchValue, setSort, toggleShowFilters, setOrder } =
-  searchSlice.actions;
+export const {
+  setSearchValue,
+  setSort,
+  toggleShowFilters,
+  setOrder,
+  setSearchDebounced,
+} = searchSlice.actions;
 export default searchSlice.reducer;

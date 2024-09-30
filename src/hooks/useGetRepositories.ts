@@ -8,17 +8,17 @@ import { VITE_REPOSITORIES_PER_PAGE } from '@/config';
 export const useGetRepositories = () => {
   const dispatch = useAppDispatch();
   const { currentPage } = useAppSelector(paginationSelector);
-  const { value, sort, order } = useAppSelector(searchSelector);
+  const { debouncedValue, sort, order } = useAppSelector(searchSelector);
 
   useEffect(() => {
     dispatch(
       getRepositories({
-        q: `lang:Typescript${value ? ` ${value}` : ''}`,
+        q: `lang:Typescript${debouncedValue ? ` ${debouncedValue}` : ''}`,
         per_page: VITE_REPOSITORIES_PER_PAGE,
         page: currentPage,
         sort,
         order,
       }),
     );
-  }, [sort, order, value, dispatch, currentPage]);
+  }, [sort, order, debouncedValue, dispatch, currentPage]);
 };
