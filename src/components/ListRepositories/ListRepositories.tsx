@@ -10,7 +10,7 @@ export const ListRepositories = () => {
   }
 
   if (error) {
-    return <Error />;
+    return <Error text={error} />;
   }
 
   return (

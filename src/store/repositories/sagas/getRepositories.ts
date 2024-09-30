@@ -19,13 +19,24 @@ function* getRepositoriesSagaWorker({
       '/search/repositories',
       payload,
     );
-    yield put(successGetRepositories(result));
-    yield put(
-      setMaxPages(Math.ceil(result.total_count / VITE_REPOSITORIES_PER_PAGE)),
-    );
+    if (result.items.length) {
+      yield put(successGetRepositories(result));
+      yield put(
+        setMaxPages(Math.ceil(result.total_count / VITE_REPOSITORIES_PER_PAGE)),
+      );
+    } else {
+      yield put(
+        errorGetRepositories('Репозиториев по данному запросу не найдено'),
+      );
+      yield put(setMaxPages(FIRST_PAGE));
+    }
   } catch (error) {
-    yield put(errorGetRepositories('Error in repositories request'));
-    yield put(setMaxPages(1));
+    yield put(
+      errorGetRepositories(
+        'Произошла ошибка при получении списка репозиториев',
+      ),
+    );
+    yield put(setMaxPages(FIRST_PAGE));
     yield put(setCurrentPage(FIRST_PAGE));
   }
 }
