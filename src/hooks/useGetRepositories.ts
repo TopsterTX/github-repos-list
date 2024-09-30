@@ -8,7 +8,7 @@ import { VITE_REPOSITORIES_PER_PAGE } from '@/config';
 export const useGetRepositories = () => {
   const dispatch = useAppDispatch();
   const { currentPage } = useAppSelector(paginationSelector);
-  const { value } = useAppSelector(searchSelector);
+  const { value, sort, order } = useAppSelector(searchSelector);
 
   useEffect(() => {
     dispatch(
@@ -16,8 +16,9 @@ export const useGetRepositories = () => {
         q: `lang:Typescript${value ? ` ${value}` : ''}`,
         per_page: VITE_REPOSITORIES_PER_PAGE,
         page: currentPage,
-        sort: 'stars',
+        sort,
+        order,
       }),
     );
-  }, [value, dispatch, currentPage]);
+  }, [sort, order, value, dispatch, currentPage]);
 };
