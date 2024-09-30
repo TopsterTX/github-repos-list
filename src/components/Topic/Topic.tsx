@@ -1,8 +1,9 @@
 import { useAppDispatch } from '@/hooks';
-import { TopicProps } from './Topic.types';
 import { setSearchDebounced, setSearchValue } from '@/store/search';
 import { setCurrentPage } from '@/store/pagination';
 import { moveToTop } from '@/utils';
+import { FIRST_PAGE } from '@/constants';
+import { TopicProps } from './Topic.types';
 
 export const Topic = ({ label }: TopicProps) => {
   const dispatch = useAppDispatch();
@@ -11,7 +12,7 @@ export const Topic = ({ label }: TopicProps) => {
     moveToTop();
     dispatch(setSearchValue(label));
     dispatch(setSearchDebounced(label));
-    dispatch(setCurrentPage(1));
+    dispatch(setCurrentPage(FIRST_PAGE));
   };
 
   return (

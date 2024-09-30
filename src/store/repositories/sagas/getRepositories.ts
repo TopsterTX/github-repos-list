@@ -1,5 +1,4 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
-import { FetchError } from 'ofetch';
 import {
   errorGetRepositories,
   getRepositories,
@@ -9,6 +8,7 @@ import {
 import { getFromAPI } from '@/api';
 import { VITE_REPOSITORIES_PER_PAGE } from '@/config';
 import { setCurrentPage, setMaxPages } from '@/store/pagination';
+import { FIRST_PAGE } from '@/constants';
 
 function* getRepositoriesSagaWorker({
   payload,
@@ -26,7 +26,7 @@ function* getRepositoriesSagaWorker({
   } catch (error) {
     yield put(errorGetRepositories('Error in repositories request'));
     yield put(setMaxPages(1));
-    yield put(setCurrentPage(1));
+    yield put(setCurrentPage(FIRST_PAGE));
   }
 }
 

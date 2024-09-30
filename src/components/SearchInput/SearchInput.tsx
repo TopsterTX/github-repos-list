@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector } from '@/hooks';
 import { setCurrentPage } from '@/store/pagination';
 import { Button } from '@/components';
 import { VITE_SEARCH_DELAY_MS } from '@/config';
+import { FIRST_PAGE } from '@/constants';
 
 export const SearchInput = () => {
   const dispatch = useAppDispatch();
@@ -19,7 +20,7 @@ export const SearchInput = () => {
 
   const debounced = useDebouncedCallback((value) => {
     dispatch(setSearchDebounced(value));
-    dispatch(setCurrentPage(1));
+    dispatch(setCurrentPage(FIRST_PAGE));
   }, VITE_SEARCH_DELAY_MS);
 
   const changeSearchHandler: ChangeEventHandler<HTMLInputElement> = (event) => {
@@ -52,7 +53,7 @@ export const SearchInput = () => {
       </Button>
       <input
         type="text"
-        className="p-2 border-2 rounded-xl w-full pl-12 outline-0"
+        className="p-2 border-2 rounded-xl w-full px-12 outline-0"
         value={value}
         onChange={changeSearchHandler}
       />

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { OrderVariants, SortVariants } from '@/store/repositories';
 import type { InitialState } from './types';
-import { GetRepositoriesPayload } from '@/store/repositories';
 
 const initialState: InitialState = {
   debouncedValue: null,
@@ -20,16 +20,10 @@ const searchSlice = createSlice({
     setSearchDebounced: (state, { payload }: PayloadAction<string>) => {
       state.debouncedValue = payload;
     },
-    setSort: (
-      state,
-      { payload }: PayloadAction<GetRepositoriesPayload['sort']>,
-    ) => {
+    setSort: (state, { payload }: PayloadAction<SortVariants>) => {
       state.sort = payload;
     },
-    setOrder: (
-      state,
-      { payload }: PayloadAction<GetRepositoriesPayload['order']>,
-    ) => {
+    setOrder: (state, { payload }: PayloadAction<OrderVariants>) => {
       state.order = payload;
     },
     toggleShowFilters: (state) => {

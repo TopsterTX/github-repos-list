@@ -1,9 +1,12 @@
 import { Repository } from '@/types';
 
+export type SortVariants = 'stars' | 'forks' | 'help-wanted-issues' | 'updated';
+export type OrderVariants = 'desc' | 'asc';
+
 export type GetRepositoriesPayload = {
   q: string;
-  sort?: 'stars' | 'forks' | 'help-wanted-issues' | 'updated';
-  order?: 'desc' | 'asc';
+  sort?: SortVariants;
+  order?: OrderVariants;
   per_page?: number;
   page?: number;
 };

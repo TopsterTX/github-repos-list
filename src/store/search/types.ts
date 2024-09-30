@@ -1,9 +1,9 @@
-import { GetRepositoriesPayload } from '@/store/repositories';
+import { OrderVariants, SortVariants } from '@/store/repositories';
 
 export type InitialState = {
   debouncedValue: string | null;
   value: string;
-  sort: GetRepositoriesPayload['sort'];
-  order: GetRepositoriesPayload['order'];
+  sort: SortVariants;
+  order: OrderVariants;
   showFilters: boolean;
 };
