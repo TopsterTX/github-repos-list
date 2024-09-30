@@ -2,4 +2,5 @@ export {
   VITE_API_URL,
   VITE_GITHUB_TOKEN,
   VITE_REPOSITORIES_PER_PAGE,
+  VITE_SEARCH_DELAY_MS,
 } from './config';

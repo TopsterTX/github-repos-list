@@ -8,3 +8,5 @@ export { Pagination } from './Pagination/Pagination';
 export { Loader } from './Loader/Loader';
 export { Error } from './Error/Error';
 export { RepositorySkeleton } from './RepositorySkeleton/RepositorySkeleton';
+export { FilterBlock } from './FilterBlock/FilterBlock';
+export { Select } from './Select/Select';

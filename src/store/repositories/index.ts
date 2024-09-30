@@ -9,4 +9,6 @@ export { getRepositoriesSagaWatcher } from './sagas/getRepositories';
 export type {
   GetRepositoriesPayload,
   SuccessGetRepositoriesPayload,
+  SortVariants,
+  OrderVariants,
 } from './types';
