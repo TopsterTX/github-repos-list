@@ -2,13 +2,13 @@ import { ChangeEventHandler } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 import { SearchIcon } from '@/assets';
 import {
-  searchSelector,
   setSearchDebounced,
   setSearchValue,
-  toggleShowFilters,
+  searchValueSelector,
+  resetInput,
 } from '@/store/search';
 import { useAppDispatch, useAppSelector } from '@/hooks';
-import { setCurrentPage } from '@/store/pagination';
+import { resetPages, setCurrentPage } from '@/store/pagination';
 import { Button } from '@/components';
 import { VITE_SEARCH_DELAY_MS } from '@/config';
 import { FIRST_PAGE } from '@/constants';
@@ -16,7 +16,7 @@ import { FIRST_PAGE } from '@/constants';
 export const SearchInput = () => {
   const dispatch = useAppDispatch();
 
-  const { showFilters, value } = useAppSelector(searchSelector);
+  const value = useAppSelector(searchValueSelector);
 
   const debounced = useDebouncedCallback((value) => {
     dispatch(setSearchDebounced(value));
@@ -28,27 +28,21 @@ export const SearchInput = () => {
     debounced(event.target.value);
   };
 
-  const changeOpenFiltersHandler = () => {
-    dispatch(toggleShowFilters());
+  const onButtonClickHandler = () => {
+    dispatch(resetInput());
+    dispatch(resetPages());
   };
 
   return (
-    <section className="relative flex items-center">
+    <article className="relative flex items-center gap-2 flex-1">
       <SearchIcon className="w-5 h-5 absolute z-10 left-4 fill-gray-400" />
       <Button
-        className="absolute right-4 w-7 h-7 border-1 py-0.5 px-1"
-        onClick={changeOpenFiltersHandler}
+        className="absolute right-4 w-7 h-7 border-1 py-1 px-1.5 hover:bg-gray-200 transition bg-gray-100"
+        onClick={onButtonClickHandler}
       >
         <div className="flex flex-col gap-1">
-          <div
-            className={`transform-gpu transition relative h-0.5 w-4 ${showFilters ? 'top-[3px] rotate-45' : ''} rounded-md bg-gray-400`}
-          />
-          <div
-            className={`transform-gpu transition relative h-0.5 w-4 ${showFilters ? 'hidden' : ''} rounded-md bg-gray-400`}
-          />
-          <div
-            className={`transform-gpu transition relative h-0.5 w-4 ${showFilters ? 'bottom-[3px] rotate-[-45deg]' : ''} rounded-md bg-gray-400`}
-          />
+          <div className="transform-gpu transition relative h-0.5 w-4 top-[3px] rotate-45 rounded-md bg-gray-500" />
+          <div className="transform-gpu transition relative h-0.5 w-4 bottom-[3px] rotate-[-45deg] rounded-md bg-gray-500" />
         </div>
       </Button>
       <input
@@ -57,6 +51,6 @@ export const SearchInput = () => {
         value={value}
         onChange={changeSearchHandler}
       />
-    </section>
+    </article>
   );
 };

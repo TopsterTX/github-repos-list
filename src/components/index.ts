@@ -10,3 +10,5 @@ export { Error } from './Error/Error';
 export { RepositorySkeleton } from './RepositorySkeleton/RepositorySkeleton';
 export { FilterBlock } from './FilterBlock/FilterBlock';
 export { Select } from './Select/Select';
+export { Input } from './Input/Input';
+export { Header } from './Header/Header';

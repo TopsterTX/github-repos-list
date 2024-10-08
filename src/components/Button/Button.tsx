@@ -16,7 +16,6 @@ export const Button = ({
         {
           ['border-blue-600 bg-white']: isActive && !disabled,
           ['bg-gray-100 text-gray-400']: disabled,
-          ['hover:bg-gray-200']: !disabled && !isActive,
         },
       )}
       disabled={disabled}

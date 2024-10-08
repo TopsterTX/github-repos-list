@@ -1,9 +1,11 @@
 export {
   default as search,
   setSearchValue,
-  setSort,
-  toggleShowFilters,
-  setOrder,
   setSearchDebounced,
+  resetInput,
 } from './slice';
-export { searchSelector } from './selectors';
+export {
+  searchSelector,
+  debouncedSearchValueSelector,
+  searchValueSelector,
+} from './selectors';

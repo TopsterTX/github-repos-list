@@ -16,8 +16,10 @@ const paginationSlice = createSlice({
     setMaxPages: (state, { payload }: PayloadAction<number>) => {
       state.maxPages = payload;
     },
+    resetPages: () => initialState,
   },
 });
 
-export const { setCurrentPage, setMaxPages } = paginationSlice.actions;
+export const { setCurrentPage, setMaxPages, resetPages } =
+  paginationSlice.actions;
 export default paginationSlice.reducer;
