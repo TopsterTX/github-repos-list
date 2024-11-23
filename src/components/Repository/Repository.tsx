@@ -1,6 +1,6 @@
 import { Topic } from '@/components';
 import { getNumString } from '@/utils';
-import { ClockIcon, ForkIcon, StarIcon } from '@/assets';
+import { ForkIcon, StarIcon } from '@/assets';
 import { RepositoryProps } from './Repository.types';
 
 export const Repository = ({

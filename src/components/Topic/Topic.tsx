@@ -14,11 +14,15 @@ export const Topic = ({ label }: TopicProps) => {
   const dispatch = useAppDispatch();
   const debouncedSearchValue = useAppSelector(debouncedSearchValueSelector);
 
+  const isSelectedTopic = debouncedSearchValue === label;
+
   const selectTopic = () => {
-    moveToTop();
-    dispatch(setSearchValue(label));
-    dispatch(setSearchDebounced(label));
-    dispatch(setCurrentPage(FIRST_PAGE));
+    if (!isSelectedTopic) {
+      moveToTop();
+      dispatch(setSearchValue(label));
+      dispatch(setSearchDebounced(label));
+      dispatch(setCurrentPage(FIRST_PAGE));
+    }
   };
 
   return (
@@ -27,7 +31,7 @@ export const Topic = ({ label }: TopicProps) => {
       className={cn(
         'transition px-2 py-0.5 rounded-xl bg-blue-100 text-sm text-blue-700 hover:cursor-pointer hover:bg-blue-200',
         {
-          ['bg-blue-300 font-medium']: debouncedSearchValue === label,
+          ['bg-blue-200 font-medium hover:bg-blue-300']: isSelectedTopic,
         },
       )}
     >
