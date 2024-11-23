@@ -4,7 +4,12 @@ export {
   getRepositories,
   successGetRepositories,
 } from './slice';
-export { repositoriesSelector } from './selectors';
+export {
+  repositoriesSelector,
+  repositoriesDataSelector,
+  repositoriesErrorSelector,
+  repositoriesLoadingSelector,
+} from './selectors';
 export { getRepositoriesSagaWatcher } from './sagas/getRepositories';
 export type {
   GetRepositoriesPayload,

@@ -1,2 +1,11 @@
-export { default as pagination, setCurrentPage, setMaxPages } from './slice';
-export { paginationSelector } from './selectors';
+export {
+  default as pagination,
+  setCurrentPage,
+  setMaxPages,
+  resetPages,
+} from './slice';
+export {
+  paginationSelector,
+  currentPageSelector,
+  maxPagesSelector,
+} from './selectors';
