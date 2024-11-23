@@ -1,6 +1,6 @@
 import { Topic } from '@/components';
-import { getStarString } from '@/utils';
-import { StarIcon } from '@/assets';
+import { getNumString } from '@/utils';
+import { ForkIcon, StarIcon } from '@/assets';
 import { RepositoryProps } from './Repository.types';
 
 export const Repository = ({
@@ -11,8 +11,10 @@ export const Repository = ({
   html_url,
   language,
   stargazers_count,
+  forks_count,
 }: RepositoryProps) => {
-  const starCountString = getStarString(stargazers_count);
+  const starCountString = getNumString(stargazers_count);
+  const forkCountString = getNumString(forks_count);
 
   return (
     <article className="flex flex-col gap-3 p-5 border-2 rounded-xl">
@@ -35,9 +37,13 @@ export const Repository = ({
       </section>
       <section className="flex gap-3 items-center">
         <span className="text-sm text-neutral-500">{language}</span>
-        <div className="flex items-center">
-          <StarIcon className="w-5 h-5" />
-          <span className="text-sm text-neutral-500">{starCountString}</span>
+        <div className="flex items-center gap-1">
+          <StarIcon className="w-4 h-4 stroke-gray-600" />
+          <p className="text-sm text-neutral-500">{starCountString}</p>
+        </div>
+        <div className="flex items-center gap-1">
+          <ForkIcon className="w-4 h-4 stroke-gray-600" />
+          <p className="text-sm text-neutral-500">{forkCountString}</p>
         </div>
       </section>
     </article>

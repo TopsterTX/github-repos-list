@@ -1,2 +1,3 @@
-export { getStarString } from './getStarString';
+export { getNumString } from './getNumString';
 export { moveToTop } from './moveToTop';
+export { getQueryString } from './getQueryString';

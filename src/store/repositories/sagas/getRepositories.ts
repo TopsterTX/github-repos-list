@@ -7,7 +7,7 @@ import {
 } from '@/store/repositories';
 import { getFromAPI } from '@/api';
 import { VITE_REPOSITORIES_PER_PAGE } from '@/config';
-import { setCurrentPage, setMaxPages } from '@/store/pagination';
+import { resetPages, setCurrentPage, setMaxPages } from '@/store/pagination';
 import { FIRST_PAGE } from '@/constants';
 
 function* getRepositoriesSagaWorker({
@@ -28,12 +28,23 @@ function* getRepositoriesSagaWorker({
       yield put(
         errorGetRepositories('Репозиториев по данному запросу не найдено'),
       );
+      yield put(resetPages());
+    }
+    if (result.items.length) {
+      yield put(successGetRepositories(result));
+      yield put(
+        setMaxPages(Math.ceil(result.total_count / VITE_REPOSITORIES_PER_PAGE)),
+      );
+    } else {
+      yield put(
+        errorGetRepositories('Репозиториев по данному запросу не найдено'),
+      );
       yield put(setMaxPages(FIRST_PAGE));
     }
   } catch (error) {
     yield put(
       errorGetRepositories(
-        'Произошла ошибка при получении списка репозиториев',
+        'При получении списка репозиториев произошла ошибка',
       ),
     );
     yield put(setMaxPages(FIRST_PAGE));

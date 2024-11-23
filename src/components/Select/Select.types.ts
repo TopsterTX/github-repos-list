@@ -7,9 +7,10 @@ export type SelectOption<T extends string> = {
 
 export type SelectProps<T extends string> = Omit<
   SelectHTMLAttributes<HTMLSelectElement>,
-  'onChange'
+  'onChange' | 'name' | 'value' | 'onBlur'
 > & {
-  onChange?: (value: T) => void;
-  options: SelectOption<T>[];
   label: string;
+  name: string;
+  options: SelectOption<T>[];
+  onChange?: (value: T) => void;
 };
