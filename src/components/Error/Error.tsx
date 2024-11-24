@@ -1,12 +1,10 @@
-import { useAppSelector } from '@/hooks';
-import { repositoriesErrorSelector } from '@/store/repositories';
+import { ErrorProps } from './Error.types.ts';
 
-export const Error = () => {
-  const error = useAppSelector(repositoriesErrorSelector);
+export const Error = ({ text }: ErrorProps) => {
   return (
     <article className="flex items-center justify-center mt-10">
       <span className="text-md text-gray-500 font-medium text-center">
-        {error || 'Произошла ошибка'}
+        {text || 'Произошла ошибка'}
       </span>
     </article>
   );
