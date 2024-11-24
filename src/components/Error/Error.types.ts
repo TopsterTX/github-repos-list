@@ -1,3 +1,3 @@
 export type ErrorProps = {
-  text: string;
+  text: string | null;
 };
